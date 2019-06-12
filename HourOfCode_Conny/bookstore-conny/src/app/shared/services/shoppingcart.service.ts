@@ -10,13 +10,14 @@ import { SharedModule } from "../shared.module";
 export class ShoppingcartService {
   currentBookList: Book[] = [];
 
-  updateBookList(bookList: Book[]): Promise<Book[] | Error> {
+  updateBookList(bookList: Book[]): Promise<Book[]> {
     return new Promise((resolve, reject) => {
       if (bookList === null) {
         reject(new Error("The collection passed was empty."));
+      } else {
+        this.currentBookList = bookList;
+        resolve(this.currentBookList);
       }
-      this.currentBookList = bookList;
-      resolve(this.currentBookList);
     });
   }
 

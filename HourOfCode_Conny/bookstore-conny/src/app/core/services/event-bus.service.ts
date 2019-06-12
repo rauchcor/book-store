@@ -32,6 +32,6 @@ export class EmitEvent {
 }
 
 export enum Events {
-  addToChart,
+  addToCart,
   updateShoppingCartForBookItem
 }

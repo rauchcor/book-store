@@ -66,8 +66,9 @@ export class BookListComponent implements OnInit {
     this.router.navigate(["book-store/books", -1]);
   }
 
-  addToShoppingCart(event: Book) {
-    this.eventBusService.emit(new EmitEvent(Events.addToChart, event));
+  addToShoppingCart(book: Book) {
+    this.eventBusService
+        .emit(new EmitEvent(Events.addToCart, book));
   }
 
   bookChanged(event: Book) {
