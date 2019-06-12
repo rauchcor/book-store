@@ -1,0 +1,13 @@
+<button class="btn" (click)="toogle()">
+<span [ngSwitch]="book.isLiked">
+    <span *ngSwitchCase="true">
+      <i class="fas fa-heart"></i>
+    </span>
+    <span *ngSwitchCase="false">
+      <i class="far fa-heart"></i>
+    </span>
+    <span *ngSwitchDefault>
+        <i class="far fa-meh-blank"></i>
+    </span>
+</span>
+</button>

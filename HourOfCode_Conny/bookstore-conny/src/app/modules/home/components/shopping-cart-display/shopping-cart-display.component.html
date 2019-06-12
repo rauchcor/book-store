@@ -1,0 +1,18 @@
+<h4>
+  <i (click)="showShoppinCartPopup()" class="fas fa-shopping-cart"><span style="margin: 1em;" class="text-muted">{{booklist.length}}</span></i>
+</h4>
+<div id="popup">
+<dx-popup
+class="popup"
+[width]="600"
+[height]="350"
+[showTitle]="true"
+title="ShoppingChart"
+[dragEnabled]="false"
+[closeOnOutsideClick]="true"
+[(visible)]="popupVisible">
+<div *dxTemplate="let data of 'content'">
+<app-shopping-cart-book-list></app-shopping-cart-book-list>
+</div>
+</dx-popup>
+</div>

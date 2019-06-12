@@ -1,0 +1,18 @@
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <a class="navbar-brand">
+          </a>
+          <span class="navbar-brand">Bookstore </span>
+      </div>
+      <nav class="nav">
+        <app-shopping-cart-display></app-shopping-cart-display>
+        <a class="nav-link" [routerLink]="['/book-store']" [routerLinkActive]="['router-link-active']" >Books</a>
+        <!-- <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+      </nav>
+  </div>
+</nav>
+<router-outlet></router-outlet>

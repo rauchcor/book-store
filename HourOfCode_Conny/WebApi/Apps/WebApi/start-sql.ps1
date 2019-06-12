@@ -1,0 +1,2 @@
+echo "docker run -d -p 1433:1433 --name mssql-server -e sa_password=3xp3rtsL!ve -e ACCEPT_EULA=Y microsoft/mssql-server-windows-developer"
+docker run -d -p 1433:1433 --name mssql-server -e sa_password=3xp3rtsL!ve -e ACCEPT_EULA=Y microsoft/mssql-server-windows-developer

@@ -1,0 +1,47 @@
+<div class="book-store-app">
+  <div class="row">
+    <div *ngIf="id == -1" class="col-11">  <p class="book-title">Add new Book</p></div>
+    <div *ngIf="id != -1" class="col-11">  <p class="book-title">Edit Book</p></div>
+    <div class="col-1"> <button class="btn" (click)="onAbort()">Abort</button></div>
+  </div>
+  <form #bookForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        class="form-control"
+        id="name"
+        name="name"
+        [(ngModel)]="newBook.name"
+        aria-describedby="nameHelp"
+        placeholder="Hour of Code Angular"
+      />
+      <small id="nameHelp" class="form-text text-muted"
+        >Enter the name of the Book you want to add</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input
+        class="form-control"
+        name="author"
+        [(ngModel)]="newBook.author"
+        id="author"
+        placeholder="Conny"
+      />
+    </div>
+    <div class="form-group">
+      <label for="year">Year</label>
+      <input
+        type="number"
+        name="year"
+        [(ngModel)]="newBook.year"
+        class="form-control"
+        id="author"
+        placeholder="1999"
+      />
+    </div>
+    <button type="submit" class="btn" (click)="onAddSubmit()">
+      Submit
+    </button>
+  </form>
+</div>

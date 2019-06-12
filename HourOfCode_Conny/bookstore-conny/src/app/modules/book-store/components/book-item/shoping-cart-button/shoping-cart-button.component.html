@@ -1,0 +1,6 @@
+<button class="btn btn-light" [class.added]="bookCount.length > 0" (click)="addToCart()" [ngStyle]="">
+    <i class="fa fa-shopping-cart"></i>
+    <span *ngIf="bookCount.length > 0">
+        {{bookCount.length}}
+    </span>
+  </button>

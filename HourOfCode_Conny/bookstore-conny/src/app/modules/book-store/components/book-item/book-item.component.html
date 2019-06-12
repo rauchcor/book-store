@@ -1,0 +1,27 @@
+<div class="row book-item">
+  <div class="col">
+    <div class="row">
+      <p>
+        <app-like [book]="book" (bookChanged)="bookIsLiked($event)"></app-like>
+      </p>
+      <p>
+        <app-shoping-cart-button [book]="book" [bookCount]="bookCount" (addToShoppingCart)="addToShoppingCart($event)"></app-shoping-cart-button>
+      </p>
+  </div>
+  </div>
+  <div class="col book-text">
+    {{ book.name }}
+  </div>
+  <div class="col book-text">
+    {{ book.author }}
+  </div>
+  <div class="col book-text">
+    {{ book.year }}
+  </div>
+  <div class="col book-text">
+    {{ book.genres | genre }}
+  </div>
+  <div class="col book-text">
+      <button class="btn btn-primary float-right" (click)="onEdit()">Edit</button>
+  </div>
+</div>
