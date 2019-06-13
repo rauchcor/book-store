@@ -1,11 +1,11 @@
 import { Component, OnInit, EventEmitter } from "@angular/core";
 import { Book } from "../../models/books";
-import { BookMockService } from "../../services/book-mock.service";
 import { Router, NavigationExtras, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
 import { ShoppingcartStore } from "src/app/shared/data-access/stores/shoppingcart.service";
 import { Genre } from "../../models/genre";
+import { BookStore } from "../../data-access/book-store.service";
 
 @Component({
   selector: "app-book-list",
@@ -29,14 +29,14 @@ export class BookListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private bookMockService: BookMockService,
+    private bookStore: BookStore,
     private shoppingCartService: ShoppingcartStore,
     public router: Router
   ) {}
 
   ngOnInit() {
-    this.$books = this.bookMockService.filteredBooks$;
-    this.$genres = this.bookMockService.allgenres$;
+    this.$books = this.bookStore.filteredBooks$;
+    this.$genres = this.bookStore.allgenres$;
 
     this.route.queryParams
       .pipe(
@@ -47,7 +47,7 @@ export class BookListComponent implements OnInit {
   }
 
   updateBookList() {
-      this.bookMockService.filterByGenres(parseInt(this.genreId, 0));
+      this.bookStore.filterByGenres(parseInt(this.genreId, 0));
   }
 
   selectGenre() {
@@ -67,6 +67,6 @@ export class BookListComponent implements OnInit {
   }
 
   bookChanged(event: Book) {
-    this.bookMockService.editBook(event);
+    this.bookStore.editBook(event);
   }
 }

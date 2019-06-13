@@ -1,17 +1,12 @@
 import { Injectable } from "@angular/core";
-import { BookStoreModule } from "../book-store.module";
 import { Book, BOOKLIST } from "../models/books";
 import {
   Observable,
   of,
   throwError,
-  Subject,
-  from,
-  interval,
-  fromEvent,
   BehaviorSubject
 } from "rxjs";
-import { map, tap, switchMap, catchError, take, share, scan, filter } from "rxjs/operators";
+import { map, switchMap, scan} from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Service, BookDto } from "src/app/core/services/api/SwaggerWebAPI";
 import { Genre, GENRELIST } from "../models/genre";
@@ -19,9 +14,10 @@ import { Genre, GENRELIST } from "../models/genre";
 @Injectable({
   providedIn: "root"
 })
-export class BookMockService {
+export class BookStore {
 
-  private allBooks: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(BOOKLIST);
+  private allBooks: BehaviorSubject<Book[]> =
+                    new BehaviorSubject<Book[]>(BOOKLIST);
   allBooks$: Observable<Book[]> = this.allBooks.pipe(
     scan((acc: Book[], newVal: Book[]) => {
       return { ...acc, ...newVal };

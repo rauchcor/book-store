@@ -18,10 +18,10 @@ export class ShoppingCartDisplayComponent implements OnInit {
     private shoppingCartService: ShoppingcartStore
   ) {}
 
-  booklist$: Observable<Book[]>;
+  currentBooksInCart$: Observable<Book[]>;
   popupVisible = false;
   ngOnInit() {
-    this.booklist$ = this.shoppingCartService.currentBooksInCart$;
+    this.currentBooksInCart$ = this.shoppingCartService.currentBooksInCart$;
   }
 
   showShoppinCartPopup() {

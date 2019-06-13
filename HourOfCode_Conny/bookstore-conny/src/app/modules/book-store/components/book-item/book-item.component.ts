@@ -19,11 +19,11 @@ export class BookItemComponent implements OnInit {
   @Output() bookChanged: EventEmitter<Book> = new EventEmitter<Book>();
   bookCount$: Observable<Book[]>;
 
-  constructor(private shoppingChartService: ShoppingcartStore, private router: Router, private eventBusService : EventBusService) { }
+  constructor(private shoppingChartStore: ShoppingcartStore, private router: Router, private eventBusService : EventBusService) { }
 
   ngOnInit() {
-    this.bookCount$ = this.shoppingChartService.getNumberOfBooksInShoppingCart(this.book);
-
+    this.bookCount$ = this.shoppingChartStore
+                          .getNumberOfBooksInShoppingCart(this.book.id);
   }
 
   bookIsLiked(event: Book) {

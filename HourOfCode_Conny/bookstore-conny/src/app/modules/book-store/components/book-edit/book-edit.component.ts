@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Route } from "@angular/compiler/src/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { map, tap, switchMap, catchError } from "rxjs/operators";
-import { BookMockService } from "../../services/book-mock.service";
+import { BookStore } from "../../data-access/book-store.service";
 import { Book } from "../../models/books";
 import { of } from "rxjs";
 
@@ -15,7 +15,7 @@ export class BookEditComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public router: Router,
-    public bookMockService: BookMockService
+    public bookStore: BookStore
   ) {}
   id: number;
   newBook: Book = {
@@ -35,7 +35,7 @@ export class BookEditComponent implements OnInit {
           if (id === "-1") {
             return of(this.newBook);
           } else {
-            return this.bookMockService.findById(Math.floor(id));
+            return this.bookStore.findById(Math.floor(id));
           }
         }),
         catchError(val => {
@@ -52,7 +52,7 @@ export class BookEditComponent implements OnInit {
 
   onAddSubmit() {
     if (this.id === -1) {
-    this.bookMockService.addBook(this.newBook);
+    this.bookStore.addBook(this.newBook);
   }
   this.router.navigate(["book-store/books"]);
   }

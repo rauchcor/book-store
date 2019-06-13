@@ -10,25 +10,25 @@ export const InitalCurrentBooksInChart: Book[] = [];
 })
 export class ShoppingcartStore {
 
-  private currentBooksInCartSubject: BehaviorSubject<Book[]>   = new BehaviorSubject<Book[]>(InitalCurrentBooksInChart);
+  private currentBooksInCartSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
   currentBooksInCart$: Observable<Book[]> = this.currentBooksInCartSubject.asObservable();
   constructor() {
   }
 
   add(book: Book) {
-    const newBookList = [...this.currentBooksInCartSubject.value, book];
+    const newBookList = [...this.currentBooksInCartSubject.getValue(), book];
     this.currentBooksInCartSubject.next(newBookList);
   }
 
   remove(index: number) {
-     const newBookList =  [...this.currentBooksInCartSubject.value.slice(0, index),
-              ...this.currentBooksInCartSubject.value.slice(index + 1, this.currentBooksInCartSubject.value.length)];
+    const currentValue = [...this.currentBooksInCartSubject.getValue()];
+    const newBookList =  [...currentValue.slice(0, index), ...currentValue.slice(index + 1, currentValue.length)];
     this.currentBooksInCartSubject.next(newBookList);
   }
 
-  getNumberOfBooksInShoppingCart(book: Book): Observable<Book[]> {
-    return this.currentBooksInCart$
-              .pipe(map(value => value.filter(x => x.id === book.id)));
+  getNumberOfBooksInShoppingCart(bookId: number): Observable<Book[]> {
+    return this.currentBooksInCartSubject
+               .pipe(map(value => value.filter(x => x.id === bookId)));
   }
 
   /*setUpCurrentBuksInCartSubject() {
