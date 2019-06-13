@@ -1,12 +1,22 @@
-<dx-data-grid
-    id="gridContainer"
-    [dataSource]="shoppingBookList"
-    [showBorders]="true">
-    <dxi-column dataField="name" caption="Name">  </dxi-column>
-        <dxi-column dataField="author" caption="Author">  </dxi-column>
-            <dxi-column dataField="year" caption="Year">  </dxi-column>
-            <dxi-column dataField="genres" cellTemplate="cellTemplate" caption="Genres"></dxi-column>
-    <div *dxTemplate="let order of 'cellTemplate'">
-        {{order.data.genres  | genre}}
+<div class="book-store-app">
+  <div class="row">
+    <div class="col ">
+      <p><b>Id</b></p>
     </div>
-</dx-data-grid>
+    <div class="col ">
+      <p><b>Name</b></p>
+    </div>
+    <div class="col ">
+      <p><b>Author</b></p>
+    </div>
+  </div>
+  <div *ngFor="let book of shoppingBookList$ | async; let i = index;">
+    <app-shopping-cart-list-item
+      [book]="book" [index]="i">
+    </app-shopping-cart-list-item>
+  </div>
+</div>
+
+
+
+

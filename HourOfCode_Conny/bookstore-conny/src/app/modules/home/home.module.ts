@@ -10,8 +10,9 @@ import { GenrePipe } from '../../core/pipes/genre.pipe';
 import { CoreModule } from 'src/app/core/core.module';
 import { OverviewComponent } from './components/overview/overview.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ShoppingCartListItemComponent } from './components/shopping-cart-list-item/shopping-cart-list-item.component';
 @NgModule({
-  declarations: [HomeComponent, ShoppingCartDisplayComponent, ShoppingCartBookListComponent, OverviewComponent],
+  declarations: [HomeComponent, ShoppingCartDisplayComponent, ShoppingCartBookListComponent, OverviewComponent, ShoppingCartListItemComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

@@ -34,7 +34,7 @@ export class BookListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bookMockService: BookMockService,
-    private eventBusService: EventBusService,
+    private shoppingCartService: ShoppingcartService,
     public router: Router
   ) {}
 
@@ -67,8 +67,7 @@ export class BookListComponent implements OnInit {
   }
 
   addToShoppingCart(book: Book) {
-    this.eventBusService
-        .emit(new EmitEvent(Events.addToCart, book));
+    this.shoppingCartService.add(book);
   }
 
   bookChanged(event: Book) {

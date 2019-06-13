@@ -6,6 +6,7 @@ import {
 } from "src/app/core/services/event-bus.service";
 import { Book } from "src/app/modules/book-store/models/books";
 import { ShoppingcartService } from "src/app/shared/services/shoppingcart.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-shopping-cart-display",
@@ -18,23 +19,10 @@ export class ShoppingCartDisplayComponent implements OnInit {
     private shoppingCartService: ShoppingcartService
   ) {}
 
-  booklist: Book[] = [];
+  booklist$: Observable<Book[]>;
   popupVisible = false;
   ngOnInit() {
-    this.booklist = this.shoppingCartService.currentBookList;
-    this.eventBusService.on(Events.addToCart, (book: Book) => {
-      this.booklist.push(book);
-      this.shoppingCartService
-        .updateBookList(this.booklist)
-        .then(() => {
-          this.eventBusService.emit(
-            new EmitEvent(Events.updateShoppingCartForBookItem, book)
-          );
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    });
+    this.booklist$ = this.shoppingCartService.currentBooksInCart$;
   }
 
   showShoppinCartPopup() {

@@ -1,5 +1,5 @@
 <h4>
-  <i (click)="showShoppinCartPopup()" class="fas fa-shopping-cart"><span style="margin: 1em;" class="text-muted">{{booklist.length}}</span></i>
+  <i (click)="showShoppinCartPopup()" class="fas fa-shopping-cart"><span style="margin: 1em;" class="text-muted">{{(booklist$ | async).length}}</span></i>
 </h4>
 <div id="popup">
 <dx-popup

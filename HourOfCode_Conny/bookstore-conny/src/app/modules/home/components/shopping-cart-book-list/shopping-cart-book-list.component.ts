@@ -10,16 +10,11 @@ import { Events, EventBusService } from 'src/app/core/services/event-bus.service
   styleUrls: ['./shopping-cart-book-list.component.sass']
 })
 export class ShoppingCartBookListComponent implements OnInit {
-  //shoppingBookList: Observable<Book[]>;
-  shoppingBookList: Book[];
+  shoppingBookList$: Observable<Book[]>;
   constructor(private shoppingCartService: ShoppingcartService, private eventBusService: EventBusService) { }
 
   ngOnInit() {
-   // this.shoppingBookList = this.shoppingCartService.currentBooksInCart$;
-
-   this.eventBusService.on(Events.updateShoppingCartForBookItem, () => {
-    this.shoppingBookList = this.shoppingCartService.currentBookList;
-  });
+   this.shoppingBookList$ = this.shoppingCartService.currentBooksInCart$;
   }
 
 }

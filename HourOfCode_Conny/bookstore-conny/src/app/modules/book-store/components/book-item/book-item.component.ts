@@ -17,22 +17,12 @@ export class BookItemComponent implements OnInit {
   @Input() book: Book;
   @Output() shoppingCartAdd: EventEmitter<Book> = new EventEmitter<Book>();
   @Output() bookChanged: EventEmitter<Book> = new EventEmitter<Book>();
-  //bookCount: Observable<Book[]>;
-  bookCount: Book[] = [];
-
+  bookCount$: Observable<Book[]>;
 
   constructor(private shoppingChartService: ShoppingcartService, private router: Router, private eventBusService : EventBusService) { }
 
   ngOnInit() {
-    //this.bookCount = this.shoppingChartService.getNumberOfBooksInShoppingCart(this.book);
-
-    this.eventBusService.on(Events.updateShoppingCartForBookItem, () => {
-      this.shoppingChartService
-      .getNumberOfBooksInShoppingCart(this.book)
-      .then((bookCount) => {
-        this.bookCount = bookCount;
-      });
-    });
+    this.bookCount$ = this.shoppingChartService.getNumberOfBooksInShoppingCart(this.book);
 
   }
 
