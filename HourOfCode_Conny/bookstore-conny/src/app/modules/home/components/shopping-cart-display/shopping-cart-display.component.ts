@@ -5,7 +5,7 @@ import {
   EmitEvent
 } from "src/app/core/services/event-bus.service";
 import { Book } from "src/app/modules/book-store/models/books";
-import { ShoppingcartService } from "src/app/shared/services/shoppingcart.service";
+import { ShoppingcartStore } from "src/app/shared/data-access/stores/shoppingcart.service";
 import { Observable } from "rxjs";
 
 @Component({
@@ -15,8 +15,7 @@ import { Observable } from "rxjs";
 })
 export class ShoppingCartDisplayComponent implements OnInit {
   constructor(
-    private eventBusService: EventBusService,
-    private shoppingCartService: ShoppingcartService
+    private shoppingCartService: ShoppingcartStore
   ) {}
 
   booklist$: Observable<Book[]>;

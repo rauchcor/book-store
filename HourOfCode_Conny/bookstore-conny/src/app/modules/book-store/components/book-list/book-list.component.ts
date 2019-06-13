@@ -1,15 +1,11 @@
 import { Component, OnInit, EventEmitter } from "@angular/core";
-import { Book, Genre } from "../../models/books";
+import { Book } from "../../models/books";
 import { BookMockService } from "../../services/book-mock.service";
 import { Router, NavigationExtras, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
-import {
-  EventBusService,
-  Events,
-  EmitEvent
-} from "src/app/core/services/event-bus.service";
-import { ShoppingcartService } from "src/app/shared/services/shoppingcart.service";
+import { ShoppingcartStore } from "src/app/shared/data-access/stores/shoppingcart.service";
+import { Genre } from "../../models/genre";
 
 @Component({
   selector: "app-book-list",
@@ -34,13 +30,13 @@ export class BookListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bookMockService: BookMockService,
-    private shoppingCartService: ShoppingcartService,
+    private shoppingCartService: ShoppingcartStore,
     public router: Router
   ) {}
 
   ngOnInit() {
-    this.$books = this.bookMockService.$bookList;
-    this.$genres = this.bookMockService.$genreList;
+    this.$books = this.bookMockService.filteredBooks$;
+    this.$genres = this.bookMockService.allgenres$;
 
     this.route.queryParams
       .pipe(

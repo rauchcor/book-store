@@ -2,13 +2,13 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Book } from "src/app/modules/book-store/models/books";
 import { map, scan } from "rxjs/operators";
-import { SharedModule } from "../shared.module";
+import { SharedModule } from "../../shared.module";
 
 export const InitalCurrentBooksInChart: Book[] = [];
 @Injectable({
   providedIn: SharedModule
 })
-export class ShoppingcartService {
+export class ShoppingcartStore {
 
   private currentBooksInCartSubject: BehaviorSubject<Book[]>   = new BehaviorSubject<Book[]>(InitalCurrentBooksInChart);
   currentBooksInCart$: Observable<Book[]> = this.currentBooksInCartSubject.asObservable();

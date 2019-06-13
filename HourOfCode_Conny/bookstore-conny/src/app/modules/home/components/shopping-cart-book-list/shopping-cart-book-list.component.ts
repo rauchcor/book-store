@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingcartService } from 'src/app/shared/services/shoppingcart.service';
+import { ShoppingcartStore } from 'src/app/shared/data-access/stores/shoppingcart.service';
 import { Observable } from 'rxjs';
 import { Book } from 'src/app/modules/book-store/models/books';
 import { Events, EventBusService } from 'src/app/core/services/event-bus.service';
@@ -11,7 +11,7 @@ import { Events, EventBusService } from 'src/app/core/services/event-bus.service
 })
 export class ShoppingCartBookListComponent implements OnInit {
   shoppingBookList$: Observable<Book[]>;
-  constructor(private shoppingCartService: ShoppingcartService, private eventBusService: EventBusService) { }
+  constructor(private shoppingCartService: ShoppingcartStore, private eventBusService: EventBusService) { }
 
   ngOnInit() {
    this.shoppingBookList$ = this.shoppingCartService.currentBooksInCart$;

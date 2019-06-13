@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Genre } from '../../modules/book-store/models/books';
+import { Genre } from 'src/app/modules/book-store/models/genre';
 
 @Pipe({
   name: 'genre'

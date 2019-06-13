@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Book } from '../../models/books';
-import { ShoppingcartService } from 'src/app/shared/services/shoppingcart.service';
+import { ShoppingcartStore } from 'src/app/shared/data-access/stores/shoppingcart.service';
 import { Observable } from 'rxjs';
 import { LikeComponent } from './like/like.component';
 import { Route } from '@angular/compiler/src/core';
@@ -19,7 +19,7 @@ export class BookItemComponent implements OnInit {
   @Output() bookChanged: EventEmitter<Book> = new EventEmitter<Book>();
   bookCount$: Observable<Book[]>;
 
-  constructor(private shoppingChartService: ShoppingcartService, private router: Router, private eventBusService : EventBusService) { }
+  constructor(private shoppingChartService: ShoppingcartStore, private router: Router, private eventBusService : EventBusService) { }
 
   ngOnInit() {
     this.bookCount$ = this.shoppingChartService.getNumberOfBooksInShoppingCart(this.book);
