@@ -1,0 +1,45 @@
+
+.book-title
+  flex-grow: 1
+  padding-left: 11px
+  color: #f00f40
+  font-size: 23pt
+
+
+.book-store-app
+  position: relative
+  width: 1200px
+  padding: 30px 30px 15px
+  background: white
+  border: 1px solid
+  border-color: #dfdcdc #d9d6d6 #ccc
+  border-radius: 2px
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+  margin: 20px auto
+
+  .book-store-app::before, .book-store-app::after
+    content: ''
+    position: absolute
+    z-index: -1
+    height: 4px
+    background: white
+    border: 1px solid #ccc
+    border-radius: 2px
+
+  .book-store-app::after
+    bottom: -3px
+    left: 0
+    right: 0
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+
+
+  .book-store-app::before
+    bottom: -5px
+    left: 2px
+    right: 2px
+    border-color: #c4c4c4
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15)
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15)
+

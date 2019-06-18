@@ -4,8 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "bookstore-conny": {
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/bookstore-conny",
+      "sourceRoot": "apps/bookstore-conny/src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {
@@ -18,16 +18,16 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/bookstore-conny",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "index": "apps/bookstore-conny/src/index.html",
+            "main": "apps/bookstore-conny/src/main.ts",
+            "polyfills": "apps/bookstore-conny/src/polyfills.ts",
+            "tsConfig": "apps/bookstore-conny/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/bookstore-conny/src/favicon.ico",
+              "apps/bookstore-conny/src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "apps/bookstore-conny/src/styles.sass"
             ],
             "scripts": [
             ]
@@ -36,8 +36,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/bookstore-conny/src/environments/environment.ts",
+                  "with": "apps/bookstore-conny/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
