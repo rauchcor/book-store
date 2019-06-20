@@ -36,6 +36,15 @@ export class BookStore {
     })
   );
 
+  filterBooks(genreID: number) {
+    if (Number.isNaN(genreID) || genreID === -1) {
+      return this.allBooks.value;
+    } else {
+      return this.allBooks.value.filter(x =>
+        x.genres.some(g => g.id === genreID)
+      );
+  }}
+
   constructor(public httpClient: HttpClient, public service: Service) {
     this.allBooks.next(BOOKLIST);
   }
@@ -79,14 +88,7 @@ export class BookStore {
     }
   }
 
-  filterBooks(genreID: number) {
-    if (Number.isNaN(genreID) || genreID === -1) {
-      return this.allBooks.value;
-    } else {
-      return this.allBooks.value.filter(x =>
-        x.genres.some(g => g.id === genreID)
-      );
-  }}
+
 
   private mapBook(bookdto: BookDto): Book {
     const booktemp: Book = {

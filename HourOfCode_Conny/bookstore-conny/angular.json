@@ -26,11 +26,8 @@
               "apps/bookstore-conny/src/favicon.ico",
               "apps/bookstore-conny/src/assets"
             ],
-            "styles": [
-              "apps/bookstore-conny/src/styles.sass"
-            ],
-            "scripts": [
-            ]
+            "styles": ["apps/bookstore-conny/src/styles.sass"],
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -83,26 +80,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.sass"
-            ],
+            "styles": ["src/styles.sass"],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -128,13 +115,23 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     }
   },
-  "defaultProject": "bookstore-conny"
+  "defaultProject": "bookstore-conny",
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "karma"
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  }
 }

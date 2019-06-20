@@ -6,6 +6,7 @@ import { tap, map } from "rxjs/operators";
 import { Genre } from "../../models/genre";
 import { BookStore } from "../../data-access/book-store.service";
 import { ShoppingcartStore } from "apps/bookstore-conny/src/app/shared/data-access/stores/shoppingcart.service";
+import { BooksFacade } from "apps/bookstore-conny/src/app/+state/books.facade";
 
 @Component({
   selector: "app-book-list",
@@ -31,11 +32,15 @@ export class BookListComponent implements OnInit {
     private route: ActivatedRoute,
     private bookStore: BookStore,
     private shoppingCartService: ShoppingcartStore,
-    public router: Router
-  ) {}
+    public router: Router,
+    public bookFacade: BooksFacade
+  ) {
+    this.bookFacade.loadAll();
+  }
 
   ngOnInit() {
-    this.$books = this.bookStore.filteredBooks$;
+    this.$books =  this.bookFacade.allBooks$;
+    //this.$books = this.bookStore.filteredBooks$;
     this.$genres = this.bookStore.allgenres$;
 
     this.route.queryParams
@@ -47,7 +52,8 @@ export class BookListComponent implements OnInit {
   }
 
   updateBookList() {
-      this.bookStore.filterByGenres(parseInt(this.genreId, 0));
+    this.bookFacade.filterBook(parseInt(this.genreId, 0));
+     // this.bookStore.filterByGenres(parseInt(this.genreId, 0));
   }
 
   selectGenre() {

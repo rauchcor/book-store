@@ -16,17 +16,17 @@ import {
 } from "devextreme-angular";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-import {
-  APP_FEATURE_KEY,
-  initialState as appInitialState,
-  appReducer
-} from "./+state/app.reducer";
-import { AppEffects } from "./+state/app.effects";
-import { AppFacade } from "./+state/app.facade";
 import { NxModule } from "@nrwl/angular";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { storeFreeze } from "ngrx-store-freeze";
+import {
+  BOOKS_FEATURE_KEY,
+  initialState as booksInitialState,
+  booksReducer
+} from "./+state/books.reducer";
+import { BooksEffects } from "./+state/books.effects";
+import { BooksFacade } from "./+state/books.facade";
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,15 +42,15 @@ import { storeFreeze } from "ngrx-store-freeze";
     DxPopupModule,
     DxButtonModule,
     NxModule.forRoot(),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(
-      { app: appReducer },
+      { books: booksReducer },
       {
-        initialState: { app: appInitialState },
+        initialState: { books: booksInitialState },
         metaReducers: !environment.production ? [storeFreeze] : []
       }
     ),
-    EffectsModule.forRoot([AppEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    EffectsModule.forRoot([BooksEffects])
   ],
   providers: [
     {
@@ -59,7 +59,7 @@ import { storeFreeze } from "ngrx-store-freeze";
       deps: [ConfigService],
       multi: true
     },
-    AppFacade
+    BooksFacade
   ],
   bootstrap: [AppComponent]
 })
