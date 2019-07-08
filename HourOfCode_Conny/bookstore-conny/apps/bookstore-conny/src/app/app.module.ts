@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeModule } from "./modules/home/home.module";
@@ -50,6 +50,7 @@ import { BooksFacade } from "./+state/books.facade";
         metaReducers: !environment.production ? [storeFreeze] : []
       }
     ),
+    StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([BooksEffects])
   ],
   providers: [

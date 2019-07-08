@@ -4,7 +4,7 @@ import { select, Store } from "@ngrx/store";
 
 import { BooksPartialState } from "./books.reducer";
 import { booksQuery } from "./books.selectors";
-import { LoadBooks, SelectBook, FilterBook } from "./books.actions";
+import { LoadBooks, SelectBook } from "./books.actions";
 
 @Injectable()
 export class BooksFacade {
@@ -22,7 +22,4 @@ export class BooksFacade {
     this.store.dispatch(new SelectBook(bookId));
   }
 
-  filterBook(genreId: number) {
-    this.store.dispatch(new FilterBook(genreId));
-  }
 }

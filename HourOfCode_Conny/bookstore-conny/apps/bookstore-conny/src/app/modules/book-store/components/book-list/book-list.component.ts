@@ -39,21 +39,26 @@ export class BookListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.$books =  this.bookFacade.allBooks$;
+    this.$books = this.bookFacade.allBooks$;
     //this.$books = this.bookStore.filteredBooks$;
     this.$genres = this.bookStore.allgenres$;
 
     this.route.queryParams
       .pipe(
         map(params => params["filter"]),
-        tap(id => (id != null) ? this.genreId = id.toString() : this.genreId = "-1")
+        tap(id =>
+          id != null ? (this.genreId = id.toString()) : (this.genreId = "-1")
+        )
       )
-      .subscribe( _ => this.updateBookList());
+      .subscribe(_ => this.updateBookList());
   }
 
   updateBookList() {
-    this.bookFacade.filterBook(parseInt(this.genreId, 0));
-     // this.bookStore.filterByGenres(parseInt(this.genreId, 0));
+    if (this.genreId !== "-1") {
+      this.selectGenre();
+    }
+    //this.bookFacade.filterBook(parseInt(this.genreId, 0));
+    // this.bookStore.filterByGenres(parseInt(this.genreId, 0));
   }
 
   selectGenre() {

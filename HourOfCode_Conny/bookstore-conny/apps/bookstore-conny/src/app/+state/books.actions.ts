@@ -6,8 +6,6 @@ export enum BooksActionTypes {
   BooksLoaded = "[Books] Books Loaded",
   BooksLoadError = "[Books] Books Load Error",
   SelectBook= "[Books] Book Selected",
-  FilterBooks= "[Books] Filter Books",
-  LoadFilterBooks = "[Books] Load Books Filterde by Genre Id"
 }
 
 export class LoadBooks implements Action {
@@ -29,16 +27,12 @@ export class SelectBook implements Action {
   constructor(public payload: string| number) {}
 }
 
-export class FilterBook implements Action {
-  readonly type = BooksActionTypes.FilterBooks;
-  constructor(public payload: number) {}
-}
-export type BooksAction = LoadBooks | BooksLoaded | BooksLoadError | FilterBook | SelectBook;
+
+export type BooksAction = LoadBooks | BooksLoaded | BooksLoadError | SelectBook;
 
 export const fromBooksActions = {
   LoadBooks,
   BooksLoaded,
   BooksLoadError,
-  SelectBook,
-  FilterBook
+  SelectBook
 };

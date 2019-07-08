@@ -43,13 +43,6 @@ export function booksReducer(
       };
       break;
     }
-    case BooksActionTypes.FilterBooks: {
-      state = {
-        ...state,
-        selectedFilterId: action.payload
-      };
-      break;
-    }
     case BooksActionTypes.SelectBook: {
       state = {
         ...state,
